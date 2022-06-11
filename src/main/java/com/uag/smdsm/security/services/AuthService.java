@@ -4,8 +4,8 @@ import com.uag.smdsm.security.mappers.AuthMapper;
 import com.uag.smdsm.security.models.JwtAuthResponse;
 import com.uag.smdsm.security.models.LoginDto;
 import com.uag.smdsm.security.models.SignUpDto;
-import com.uag.smdsm.security.repositories.RoleRepository;
-import com.uag.smdsm.security.repositories.UserRepository;
+import com.uag.smdsm.security.repositories.SpringRoleRepository;
+import com.uag.smdsm.security.repositories.SpringUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,8 +20,8 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final SpringUserRepository springUserRepository;
+    private final SpringRoleRepository springRoleRepository;
     private final JwtTokenService jwtTokenService;
     private final AuthMapper authMapper;
 
@@ -37,14 +37,14 @@ public class AuthService {
     }
 
     public void registerUser(SignUpDto signUpDto) {
-        if (userRepository.existsByUsername(signUpDto.getUsername()) ||
-                userRepository.existsByEmail(signUpDto.getEmail())) {
+        if (springUserRepository.existsByUsername(signUpDto.getUsername()) ||
+                springUserRepository.existsByEmail(signUpDto.getEmail())) {
             throw new BadCredentialsException("Credentials already taken.");
         }
 
-        var user = authMapper.toUser(signUpDto);
-        user.setRoles(Collections.singletonList(roleRepository.findByName("ROLE_USER").get()));
+        var user = authMapper.toSpringUser(signUpDto);
+        user.setRoles(Collections.singletonList(springRoleRepository.findByName("ROLE_USER").get()));
 
-        userRepository.save(user);
+        springUserRepository.save(user);
     }
 }

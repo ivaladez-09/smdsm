@@ -3,6 +3,8 @@ package com.uag.smdsm.security.exceptions;
 import com.uag.smdsm.security.models.ErrorDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -13,15 +15,29 @@ import java.time.LocalDate;
 public class GlobalExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorDetails> handleBadCredentialsException(
-            BadCredentialsException exception,
-            WebRequest webRequest){
+            BadCredentialsException e,
+            WebRequest webRequest) {
 
-        final ErrorDetails errorDetails = ErrorDetails.builder()
-                .timestamp(LocalDate.now())
-                .message(exception.getMessage())
-                .details(webRequest.getDescription(false))
-                .build();
+        final ErrorDetails errorDetails = createErrorDetails(e, webRequest);
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleUsernameNotFoundException(
+            UsernameNotFoundException e,
+            WebRequest webRequest) {
+
+        final ErrorDetails errorDetails = createErrorDetails(e, webRequest);
 
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
+    }
+
+    private ErrorDetails createErrorDetails(Exception e, WebRequest webRequest) {
+        return ErrorDetails.builder()
+                .timestamp(LocalDate.now())
+                .message(e.getMessage())
+                .details(webRequest.getDescription(true))
+                .build();
     }
 }

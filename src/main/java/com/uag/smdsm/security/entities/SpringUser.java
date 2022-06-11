@@ -3,7 +3,6 @@ package com.uag.smdsm.security.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -11,13 +10,11 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "spring_user")
+public class SpringUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String name;
 
     @Column(unique = true)
     private String username;
@@ -27,11 +24,9 @@ public class User {
 
     private String password;
 
-    private LocalDate birthday;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
+    private List<SpringRole> roles;
 }

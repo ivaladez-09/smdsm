@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "spring_role")
+public class SpringRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
