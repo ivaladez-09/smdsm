@@ -1,4 +1,4 @@
-package com.uag.smdsm.models;
+package com.uag.smdsm.security.models;
 
 import lombok.Data;
 

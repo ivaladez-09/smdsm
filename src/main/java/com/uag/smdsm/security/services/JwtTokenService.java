@@ -1,4 +1,4 @@
-package com.uag.smdsm.security;
+package com.uag.smdsm.security.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -6,13 +6,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class JwtTokenProvider {
+public class JwtTokenService {
     @Value("${app.jwt.secret}")
     private String secret;
 

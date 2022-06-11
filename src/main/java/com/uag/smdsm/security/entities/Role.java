@@ -1,4 +1,4 @@
-package com.uag.smdsm.entities;
+package com.uag.smdsm.security.entities;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name; //ROLE_ADMIN, ROLE_USER
 }

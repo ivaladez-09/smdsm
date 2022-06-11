@@ -1,4 +1,4 @@
-package com.uag.smdsm.security;
+package com.uag.smdsm.security.configs;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

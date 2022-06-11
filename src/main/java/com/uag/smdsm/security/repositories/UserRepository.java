@@ -1,6 +1,6 @@
-package com.uag.smdsm.repositories;
+package com.uag.smdsm.security.repositories;
 
-import com.uag.smdsm.entities.User;
+import com.uag.smdsm.security.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

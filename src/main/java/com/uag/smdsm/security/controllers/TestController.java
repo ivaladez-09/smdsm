@@ -1,4 +1,4 @@
-package com.uag.smdsm.controllers;
+package com.uag.smdsm.security.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

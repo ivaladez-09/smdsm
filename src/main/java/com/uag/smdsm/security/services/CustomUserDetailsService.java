@@ -1,7 +1,7 @@
-package com.uag.smdsm.security;
+package com.uag.smdsm.security.services;
 
-import com.uag.smdsm.entities.Role;
-import com.uag.smdsm.repositories.UserRepository;
+import com.uag.smdsm.security.entities.Role;
+import com.uag.smdsm.security.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
