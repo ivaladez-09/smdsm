@@ -12,5 +12,6 @@ public class SpringRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false, length = 15)
     private String name; //ROLE_ADMIN, ROLE_USER
 }

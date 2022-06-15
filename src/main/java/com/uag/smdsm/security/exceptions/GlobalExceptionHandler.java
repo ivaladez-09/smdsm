@@ -1,5 +1,6 @@
 package com.uag.smdsm.security.exceptions;
 
+import com.uag.smdsm.api.exceptions.ResourceNotFoundException;
 import com.uag.smdsm.security.models.ErrorDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,16 @@ public class GlobalExceptionHandler {
         final ErrorDetails errorDetails = createErrorDetails(e, webRequest);
 
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(
+            ResourceNotFoundException e,
+            WebRequest webRequest) {
+
+        final ErrorDetails errorDetails = createErrorDetails(e, webRequest);
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     private ErrorDetails createErrorDetails(Exception e, WebRequest webRequest) {

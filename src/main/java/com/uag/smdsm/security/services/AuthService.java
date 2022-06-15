@@ -1,5 +1,6 @@
 package com.uag.smdsm.security.services;
 
+import com.uag.smdsm.security.entities.SpringRole;
 import com.uag.smdsm.security.mappers.AuthMapper;
 import com.uag.smdsm.security.models.JwtAuthResponse;
 import com.uag.smdsm.security.models.LoginDto;
@@ -13,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
 import java.util.Collections;
 
 
@@ -43,7 +45,13 @@ public class AuthService {
         }
 
         var user = authMapper.toSpringUser(signUpDto);
-        user.setRoles(Collections.singletonList(springRoleRepository.findByName("ROLE_USER").get()));
+        var role = springRoleRepository.findByName("ROLE_USER")
+                .orElseGet(() -> {
+                    var userRole = new SpringRole();
+                    userRole.setName("ROLE_USER");
+                    return userRole;
+                });
+        user.setRoles(Collections.singletonList(role));
 
         springUserRepository.save(user);
     }
