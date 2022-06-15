@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "604ec885-e428-4e3c-ac6c-757ad49a6b05",
+		"name": "SMDSM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19195602"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "/auth/sigin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usernameOrEmail\": \"esau@gmail.com\",\n    \"password\": \"password7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{smdsm_url}}/auth/signin",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/auth/signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"esau marquez\",\n    \"username\": \"esau\",\n    \"email\": \"esau@gmail.com\",\n    \"password\": \"password7\",\n    \"birthday\": \"1994-05-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{smdsm_url}}/auth/signup",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "/test",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NDkyMTk1MywiZXhwIjoxNjU0OTgyNDMzfQ.8-0Y2AccVLxqzSvAwe9EK1DMNvrWaKjBhFaoOLfSU47X_AEA3TNKL4r3K1qJR93Aqatt4ZTmjnWV348B_NWFuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/test",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NTMwMDg4NCwiZXhwIjoxNjU1MzYxMzY0fQ.Zvu0Eax8pLAibpefv62JUm0vxFbnxcVIn4nOQIRm7aWkoceXxGo4FJAGylLE06NGcUCqNQQYOls41Hv-qoBSKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/users",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NTMwMDg4NCwiZXhwIjoxNjU1MzYxMzY0fQ.Zvu0Eax8pLAibpefv62JUm0vxFbnxcVIn4nOQIRm7aWkoceXxGo4FJAGylLE06NGcUCqNQQYOls41Hv-qoBSKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/users/1",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CountByDiseaseAndGender",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NTMwMDg4NCwiZXhwIjoxNjU1MzYxMzY0fQ.Zvu0Eax8pLAibpefv62JUm0vxFbnxcVIn4nOQIRm7aWkoceXxGo4FJAGylLE06NGcUCqNQQYOls41Hv-qoBSKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/users/count-disease?disease=cardiovascular&gender=male",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"users",
+								"count-disease"
+							],
+							"query": [
+								{
+									"key": "disease",
+									"value": "cardiovascular"
+								},
+								{
+									"key": "gender",
+									"value": "male"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CountByRiskFactorAndGender",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NTMwMDg4NCwiZXhwIjoxNjU1MzYxMzY0fQ.Zvu0Eax8pLAibpefv62JUm0vxFbnxcVIn4nOQIRm7aWkoceXxGo4FJAGylLE06NGcUCqNQQYOls41Hv-qoBSKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/users/count-risk-factor?riskFactor=blood_pressure&gender=female",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"users",
+								"count-risk-factor"
+							],
+							"query": [
+								{
+									"key": "riskFactor",
+									"value": "blood_pressure"
+								},
+								{
+									"key": "gender",
+									"value": "female"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CountByDateRangeAndGender",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc2F1QGdtYWlsLmNvbSIsImlhdCI6MTY1NTMwMDg4NCwiZXhwIjoxNjU1MzYxMzY0fQ.Zvu0Eax8pLAibpefv62JUm0vxFbnxcVIn4nOQIRm7aWkoceXxGo4FJAGylLE06NGcUCqNQQYOls41Hv-qoBSKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smdsm_url}}/users/count-date-range?startDate=1990-05-22&endDate=2000-12-31&gender=male",
+							"host": [
+								"{{smdsm_url}}"
+							],
+							"path": [
+								"users",
+								"count-date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "1990-05-22"
+								},
+								{
+									"key": "endDate",
+									"value": "2000-12-31"
+								},
+								{
+									"key": "gender",
+									"value": "male"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "smdsm_url",
+			"value": "localhost:8080/smdsm/api",
+			"type": "string"
+		}
+	]
+}
