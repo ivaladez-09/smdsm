@@ -1,6 +1,7 @@
 package com.uag.smdsm.api.controllers;
 
 import com.uag.smdsm.api.models.UserResponse;
+import com.uag.smdsm.api.models.UsersCountResponse;
 import com.uag.smdsm.api.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,30 +35,33 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/count-disease") // ?disease={}&gender={}
-    ResponseEntity<Integer> countByDisease(
+    ResponseEntity<UsersCountResponse> countByDisease(
             @RequestParam(defaultValue = "diabetes", required = false) String disease,
             @RequestParam(defaultValue = "male", required = false) String gender
     ){
         var totalUsers = userService.countByGenderAndDisease(gender, disease);
         log.info("##### CountByDisease users:");
         log.info("- " + totalUsers);
-        return new ResponseEntity<>(totalUsers, HttpStatus.OK);
+        return new ResponseEntity<>(new UsersCountResponse(totalUsers), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/count-risk-factor") // ?riskFactor={}&gender={}
-    ResponseEntity<Integer> countByRiskFactor(
+    ResponseEntity<UsersCountResponse> countByRiskFactor(
             @RequestParam(defaultValue = "hdl", required = false) String riskFactor,
             @RequestParam(defaultValue = "female", required = false) String gender
     ){
         var totalUsers = userService.countByGenderAndRiskFactor(gender, riskFactor);
         log.info("##### CountByRiskFactor users:");
         log.info("- " + totalUsers);
-        return new ResponseEntity<>(totalUsers, HttpStatus.OK);
+        return new ResponseEntity<>(new UsersCountResponse(totalUsers), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/count-date-range") // ?startDate={}&endDate={}&gender={}
-    ResponseEntity<Integer> countByDateRange(
+    ResponseEntity<UsersCountResponse> countByDateRange(
             @RequestParam(defaultValue = "1900-01-01", required = false) String startDate,
             @RequestParam(defaultValue = "2099-12-31", required = false) String endDate,
             @RequestParam(defaultValue = "female", required = false) String gender
@@ -65,6 +69,6 @@ public class UserController {
         var totalUsers = userService.countByGenderAndBirthdayBetween(gender, startDate, endDate);
         log.info("##### CountByDateRange users:");
         log.info("- " + totalUsers);
-        return new ResponseEntity<>(totalUsers, HttpStatus.OK);
+        return new ResponseEntity<>(new UsersCountResponse(totalUsers), HttpStatus.OK);
     }
 }

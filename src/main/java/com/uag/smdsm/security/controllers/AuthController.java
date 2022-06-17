@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthService authService;
 
+    @CrossOrigin
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthResponse> signin(@RequestBody LoginDto loginDto) {
         return new ResponseEntity<>(authService.authenticateUser(loginDto), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignUpDto signUpDto) {
         authService.registerUser(signUpDto);
