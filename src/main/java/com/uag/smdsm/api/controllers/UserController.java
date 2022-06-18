@@ -50,7 +50,7 @@ public class UserController {
     @CrossOrigin
     @GetMapping("/count-risk-factor") // ?riskFactor={}&gender={}
     ResponseEntity<UsersCountResponse> countByRiskFactor(
-            @RequestParam(defaultValue = "hdl", required = false) String riskFactor,
+            @RequestParam(name = "risk_factor", defaultValue = "hdl", required = false) String riskFactor,
             @RequestParam(defaultValue = "female", required = false) String gender
     ){
         var totalUsers = userService.countByGenderAndRiskFactor(gender, riskFactor);
@@ -62,8 +62,8 @@ public class UserController {
     @CrossOrigin
     @GetMapping("/count-date-range") // ?startDate={}&endDate={}&gender={}
     ResponseEntity<UsersCountResponse> countByDateRange(
-            @RequestParam(defaultValue = "1900-01-01", required = false) String startDate,
-            @RequestParam(defaultValue = "2099-12-31", required = false) String endDate,
+            @RequestParam(name = "start_date", defaultValue = "1900-01-01", required = false) String startDate,
+            @RequestParam(name = "end_date", defaultValue = "2099-12-31", required = false) String endDate,
             @RequestParam(defaultValue = "female", required = false) String gender
     ){
         var totalUsers = userService.countByGenderAndBirthdayBetween(gender, startDate, endDate);
