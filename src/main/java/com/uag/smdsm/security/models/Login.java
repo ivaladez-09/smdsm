@@ -3,8 +3,7 @@ package com.uag.smdsm.security.models;
 import lombok.Data;
 
 @Data
-public class SignUpDto {
-    private String username;
-    private String email;
+public class Login {
+    private String usernameOrEmail;
     private String password;
 }

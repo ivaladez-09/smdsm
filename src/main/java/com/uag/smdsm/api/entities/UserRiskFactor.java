@@ -1,5 +1,6 @@
 package com.uag.smdsm.api.entities;
 
+import com.uag.smdsm.api.entities.keys.UserRiskFactorKey;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -12,43 +12,36 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class JwtTokenService {
+public class JsonWebTokenService {
     @Value("${app.jwt.secret}")
     private String secret;
 
     @Value("${app.jwt.expiration-milliseconds}")
     private Integer expirationMilliseconds;
 
-    public String generateToken(Authentication authentication) {
+    public String generate(Authentication authentication) {
         var username = authentication.getName();
         var currentDate = new Date();
         var expireDate = new Date(currentDate.getTime() + expirationMilliseconds);
 
-        var token = Jwts.builder()
+        return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-        return token;
     }
 
-    public String getUsernameFromJwt(String token) {
+    public String getUsername(String jwt) {
         Claims claims = Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJws(token)
+                .parseClaimsJws(jwt)
                 .getBody();
         return claims.getSubject();
     }
 
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(secret)
-                    .parseClaimsJws(token);
-            return true;
-        } catch (Exception e) {
-            throw e;
-        }
-
+    public boolean isValid(String jwt) {
+        Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt);
+        return true;
     }
 }

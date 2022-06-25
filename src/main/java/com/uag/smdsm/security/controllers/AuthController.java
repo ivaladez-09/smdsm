@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthController {
-    private final AuthService authService;
+    private final AuthService service;
 
-    @CrossOrigin
     @PostMapping("/signin")
-    public ResponseEntity<JwtAuthResponse> signin(@RequestBody LoginDto loginDto) {
-        return new ResponseEntity<>(authService.authenticateUser(loginDto), HttpStatus.OK);
+    public ResponseEntity<JwtAuthResponse> signin(@RequestBody Login login) {
+        return new ResponseEntity<>(service.authenticateUser(login), HttpStatus.OK);
     }
 
-    @CrossOrigin
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody SignUpDto signUpDto) {
-        authService.registerUser(signUpDto);
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+    public ResponseEntity<String> signup(@RequestBody SignUp signUp) {
+        service.registerUser(signUp);
+        return new ResponseEntity<>("User registered", HttpStatus.OK);
     }
 }

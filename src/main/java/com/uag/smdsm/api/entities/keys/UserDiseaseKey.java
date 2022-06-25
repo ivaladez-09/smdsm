@@ -1,4 +1,4 @@
-package com.uag.smdsm.api.entities;
+package com.uag.smdsm.api.entities.keys;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

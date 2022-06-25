@@ -1,5 +1,6 @@
 package com.uag.smdsm.api.entities;
 
+import com.uag.smdsm.api.entities.keys.UserDiseaseKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

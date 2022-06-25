@@ -1,7 +1,7 @@
 package com.uag.smdsm.security.configs;
 
 import com.uag.smdsm.security.services.CustomUserDetailsService;
-import com.uag.smdsm.security.services.JwtTokenService;
+import com.uag.smdsm.security.services.JsonWebTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,17 +19,17 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final JwtTokenService jwtTokenService;
+    private final JsonWebTokenService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        var token = getJwtFromToken(request);
+        var jwt = getJwt(request);
 
-        if (StringUtils.hasText(token) && jwtTokenService.validateToken(token)) {
-            var username = jwtTokenService.getUsernameFromJwt(token);
+        if (StringUtils.hasText(jwt) && jwtService.isValid(jwt)) {
+            var username = jwtService.getUsername(jwt);
             var userDetails = customUserDetailsService.loadUserByUsername(username);
             var authToken = new UsernamePasswordAuthenticationToken(userDetails,
                     null,
@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     // Bearer <accessToken>
-    private String getJwtFromToken(HttpServletRequest request) {
+    private String getJwt(HttpServletRequest request) {
         var bearerToken = request.getHeader("Authorization");
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);

@@ -1,7 +1,7 @@
 package com.uag.smdsm.security.mappers;
 
 import com.uag.smdsm.security.entities.SpringUser;
-import com.uag.smdsm.security.models.SignUpDto;
+import com.uag.smdsm.security.models.SignUp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class AuthMapper {
     private final PasswordEncoder passwordEncoder;
 
-    public SpringUser toSpringUser(SignUpDto signUpDto) {
+    public SpringUser toSpringUser(SignUp signUp) {
         return SpringUser.builder()
-                .username(signUpDto.getUsername())
-                .email(signUpDto.getEmail())
-                .password(passwordEncoder.encode(signUpDto.getPassword()))
+                .username(signUp.getUsername())
+                .email(signUp.getEmail())
+                .password(passwordEncoder.encode(signUp.getPassword()))
                 .build();
     }
 }
